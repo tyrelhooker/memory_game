@@ -5,7 +5,6 @@ import Jumbotron from "./components/Jumbotron";
 import MustangCard from "./components/MustangCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
-import Counter from "./components/Counter";
 import mustangs from "./mustangs.json";
 
 let clickedMustangs = [];
@@ -15,6 +14,7 @@ class App extends Component {
   state = {
     count: 0,
     topScore: 0,
+    maxScore: 12,
     mustangs,
     clickedMustangs,
     message: "Click on a Card to Begin!"
@@ -26,15 +26,25 @@ class App extends Component {
       clickedMustangs.push(id);
       // message = "You did not choose a duplicate card! Keep going!";
       console.log(clickedMustangs);
-      this.setState({ 
-        count: this.state.count + 1,
-        message: "You did not choose a duplicate card! Keep going!"
-      });
-      this.shuffleCards(mustangs);
-      if (this.state.count +1> this.state.topScore) {
-        this.setState({ topScore: this.state.count +1 });
+      if (this.state.count + 1 === this.state.maxScore) {
+        this.setState({
+          message: "You won the game!",
+          count: 0,
+          topScore: 0,
+        })
+        clickedMustangs = [];
+        this.shuffleCards(mustangs);
+      } 
+      else if (this.state.count +1 > this.state.topScore) {
+        // this.setState({ topScore: this.state.count +1 });
+        this.setState({ 
+          count: this.state.count + 1,
+          message: "You did not choose a duplicate card! Keep going!"
+        });
+        this.shuffleCards(mustangs);
       }
-    } else {
+    }  
+    else {
       console.log("You lose");
       this.resetGame();
     }
