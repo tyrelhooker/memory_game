@@ -4,8 +4,8 @@ import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 import MustangCard from "./components/MustangCard";
 import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
 import mustangs from "./mustangs.json";
+import Row from "./components/Row";
 
 let clickedMustangs = [];
 // let message="";
@@ -81,9 +81,7 @@ class App extends Component {
           topScore={this.state.topScore}
         />
         <Jumbotron />
-        <Title>Mustangs</Title>
-        <div className="row mx-auto">
-
+        <Row>
           {this.state.mustangs.map(mustang => (
             <MustangCard
               count={this.state.count}
@@ -93,8 +91,7 @@ class App extends Component {
               image={mustang.image}
             />
           ))}
-
-        </div>
+        </Row>
       </Wrapper>
     );
   }

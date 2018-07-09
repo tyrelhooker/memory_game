@@ -1,0 +1,14 @@
+.jumbotron {
+  background-image: url("../../images/grillbkgrd.jpg");
+  background-size: cover;
+}
+
+h1{
+  color: darkblue;
+  text-align: center;
+}
+
+p {
+  color: lightblue;
+  text-align: center;
+}
