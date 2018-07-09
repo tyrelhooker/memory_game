@@ -6,6 +6,7 @@ const Navbar = (props) => (
       Memory Game
     </a>
     <ul>
+      <li>Status: {props.message}</li>
       <li> Current Score: {props.count} | Top Score: {props.topScore}</li>
     </ul>
   </nav>

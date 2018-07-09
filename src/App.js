@@ -8,24 +8,47 @@ import Title from "./components/Title";
 import Counter from "./components/Counter";
 import mustangs from "./mustangs.json";
 
-const clickedMustangs = [];
+let clickedMustangs = [];
+// let message="";
 
 class App extends Component {
   state = {
     count: 0,
     topScore: 0,
     mustangs,
-    clickedMustangs
+    clickedMustangs,
+    message: "Click on a Card to Begin!"
   };
 
-  handleIncrement = () => {
-    // We always use the setState method to update a component's state
-    this.setState({ count: this.state.count + 1 });
-    this.shuffleCards(mustangs);
-    if (this.state.count > this.state.topScore) {
-      this.state.topScore= this.state.count;
+  handleIncrement = (id) => {
+    console.log(id);
+    if (clickedMustangs.indexOf(id) === -1){
+      clickedMustangs.push(id);
+      // message = "You did not choose a duplicate card! Keep going!";
+      console.log(clickedMustangs);
+      this.setState({ 
+        count: this.state.count + 1,
+        message: "You did not choose a duplicate card! Keep going!"
+      });
+      this.shuffleCards(mustangs);
+      if (this.state.count +1> this.state.topScore) {
+        this.setState({ topScore: this.state.count +1 });
+      }
+    } else {
+      console.log("You lose");
+      this.resetGame();
     }
   };
+
+  resetGame = () => {
+    this.setState({
+      count: 0,
+      message: "You clicked a duplicate card. You lose."
+    });
+    clickedMustangs = [];
+    console.log(clickedMustangs);
+    this.shuffleCards(mustangs);
+  }
 
   shuffleCards = (array) => {
     var currentIndex = array.length, tempValue, randIndex;
@@ -43,6 +66,7 @@ class App extends Component {
     return (
       <Wrapper>
         <Navbar 
+          message={this.state.message}
           count={this.state.count}
           topScore={this.state.topScore}
         />
@@ -56,7 +80,6 @@ class App extends Component {
               handleIncrement={this.handleIncrement}
               id ={mustang.id}
               key={mustang.id}
-              // name={mustang.name}
               image={mustang.image}
             />
           ))}
