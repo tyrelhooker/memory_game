@@ -22,6 +22,9 @@ class App extends Component {
     // We always use the setState method to update a component's state
     this.setState({ count: this.state.count + 1 });
     this.shuffleCards(mustangs);
+    if (this.state.count > this.state.topScore) {
+      this.state.topScore= this.state.count;
+    }
   };
 
   shuffleCards = (array) => {
@@ -39,9 +42,11 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Navbar />
+        <Navbar 
+          count={this.state.count}
+          topScore={this.state.topScore}
+        />
         <Jumbotron />
-        <Counter />
         <Title>Mustangs</Title>
         <div className="row mx-auto">
 

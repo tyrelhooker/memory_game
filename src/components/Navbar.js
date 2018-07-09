@@ -1,10 +1,13 @@
 import React from "react";
 
-const Navbar = () => (
+const Navbar = (props) => (
   <nav className="navbar navbar-expand-sm navbar-success bg-light">
-    <a className="navbar-brand" href="#">
+    <a className="navbar-brand" href="/">
       Memory Game
     </a>
+    <ul>
+      <li> Current Score: {props.count} | Top Score: {props.topScore}</li>
+    </ul>
   </nav>
 );
 
