@@ -1,5 +1,9 @@
+.navbar-brand {
+  margin-right: 50px;
+}
+
 .navbar li {
   display: inline-block;
   text-align: center;
-  margin: 33px, 0;
+  margin-right: 50px;
 }

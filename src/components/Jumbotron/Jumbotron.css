@@ -1,5 +1,6 @@
+
 .jumbotron {
-  background-image: url("../../images/grillbkgrd.jpg");
+  background-image: url("/images/mustangFront.jpg");
   background-size: cover;
 }
 
@@ -12,3 +13,4 @@ p {
   color: lightblue;
   text-align: center;
 }
+
